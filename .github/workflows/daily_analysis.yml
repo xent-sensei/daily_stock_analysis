@@ -201,13 +201,7 @@ jobs:
           
         run: |
           # debugging 
-          python -c "
-import os, litellm
-key = os.environ.get('GEMINI_API_KEY', '')
-print('key len:', len(key))
-resp = litellm.completion(model='gemini/gemini-2.0-flash', messages=[{'role':'user','content':'hi'}], api_key=key)
-print(resp.choices[0].message.content)
-"
+          python -c python -c "import os,litellm; key=os.environ.get('GEMINI_API_KEY',''); print('len:',len(key)); r=litellm.completion(model='gemini/gemini-2.0-flash',messages=[{'role':'user','content':'hi'}],api_key=key); print(r.choices[0].message.content)"
           # 处理 LITELLM YAML 配置文件
           if [ -n "$LITELLM_CONFIG_YAML" ] && [ -n "$LITELLM_CONFIG" ]; then
             echo "📝 使用 GitHub Actions Secrets/Variables 中的 LITELLM_CONFIG_YAML 配置"
